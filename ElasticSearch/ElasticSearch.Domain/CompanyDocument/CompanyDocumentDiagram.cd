@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ElasticSearch.Domain.CompanyDocument.Company">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAiAAAAAAAAAAgAAQAAQAAAAAACBAAAAAAAAA=</HashCode>
+      <FileName>CompanyDocument\Company.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElasticSearch.Domain.CompanyDocument.Customer">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CompanyDocument\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElasticSearch.Domain.CompanyDocument.Supplier">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CompanyDocument\Supplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElasticSearch.Domain.CompanyDocument.Product">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CompanyDocument\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElasticSearch.Domain.CompanyDocument.CompanyDocument">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Members>
+      <Property Name="Id" Hidden="true" />
+      <Property Name="IndexName" Hidden="true" />
+      <Property Name="TypeName" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAQAAAAAAAAAAAAAAAAAAAEAABAAAAAABAAAAAA=</HashCode>
+      <FileName>CompanyDocument\CompanyDocument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
