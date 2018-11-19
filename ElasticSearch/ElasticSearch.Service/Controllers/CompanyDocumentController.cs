@@ -35,13 +35,6 @@ namespace ElasticSearch.Service.Controllers
         {
             Domain.CompanyDocument.CompanyDocumentWriter productCompanyWriter =
                 new CompanyDocumentWriter(_elasticConnectionString);
-            /*
-            Domain.CompanyDocument.CompanyDocumentWriter productCompanyWriter =
-                //new CompanyDocumentWriter(new Uri("http://172.16.18.206:9200"));
-                //new CompanyDocumentWriter(new Uri("https://search-promomash-elastic-domain-26y5ho4yiiwvd4pevfjkaqpyzy.us-west-2.es.amazonaws.com/"));
-                //new CompanyDocumentWriter(new Uri("https://63gl8vi55e:c8jvqsvdv3@test-7782594285.us-west-2.bonsaisearch.net/"));
-                new CompanyDocumentWriter(new Uri("http://127.0.0.1:9200/"));
-            */
 
             if (delete)
             {
