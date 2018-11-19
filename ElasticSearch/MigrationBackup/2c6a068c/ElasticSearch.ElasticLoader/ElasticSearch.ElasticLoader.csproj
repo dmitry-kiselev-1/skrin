@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F39E5949-09AC-4210-8B69-B9A4599E2037}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{1FB6D415-17A8-49CC-B1B4-BCAC2FF3781C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ElasticSearch.Domain</RootNamespace>
-    <AssemblyName>ElasticSearch.Domain</AssemblyName>
+    <RootNamespace>ElasticSearch.ElasticLoader</RootNamespace>
+    <AssemblyName>ElasticSearch.ElasticLoader</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,7 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,43 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompanyDocument\CompanyDocumentReader.cs" />
-    <Compile Include="CompanyDocument\CompanyDocumentReaderSettings.cs" />
-    <Compile Include="CompanyDocument\CompanyRoleEnum.cs" />
-    <Compile Include="IElasticDocument.cs" />
-    <Compile Include="SourceReader.cs" />
-    <Compile Include="ElasticWriter.cs" />
-    <Compile Include="CompanyDocument\Company.cs" />
-    <Compile Include="CompanyDocument\Product.cs" />
-    <Compile Include="CompanyDocument\CompanyDocument.cs" />
-    <Compile Include="CompanyDocument\CompanyDocumentWriter.cs" />
+    <Compile Include="CompanyDocument\CompanyDocumentLoader.cs" />
+    <Compile Include="ElasticLoaderLog.cs" />
+    <Compile Include="ElasticLoaderSettings.cs" />
+    <Compile Include="ElasticLoaderSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ElasticLoaderSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MainDiagram.cd" />
-    <None Include="CompanyDocument\CompanyDocumentDiagram.cd" />
+    <None Include="App.config" />
+    <None Include="ElasticLoaderSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ElasticLoaderSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CompanyDocument\sql\Okved.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CompanyDocument\sql\Revenue.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CompanyDocument\sql\Company.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CompanyDocument\sql\Filter.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="NEST">
-      <Version>2.3.1</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>8.0.3</Version>
-    </PackageReference>
+    <ProjectReference Include="..\ElasticSearch.Domain\ElasticSearch.Domain.csproj">
+      <Project>{f39e5949-09ac-4210-8b69-b9a4599e2037}</Project>
+      <Name>ElasticSearch.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
