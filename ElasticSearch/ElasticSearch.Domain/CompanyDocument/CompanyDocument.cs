@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -8,7 +9,10 @@ namespace ElasticSearch.Domain.CompanyDocument
     public class CompanyDocument : IElasticDocument
     {
         /// <summary> Уникальный идентификатор документа в индексе (идентификатор компании) </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
+
+        /// <summary> Дата обновления в Elastic </summary>
+        public DateTime? UpdateDate { get; set; }
 
         /// <summary> Уникальное наименование индекса Elastic (аналог базы данных) </summary>
         [JsonIgnore]
@@ -28,6 +32,9 @@ namespace ElasticSearch.Domain.CompanyDocument
         public Company Company { get; set; }
 
         /// <summary> Список товаров, поставляемых данной компанией </summary>
-        public List<Product> ProductList { get; set; }
+        public List<Product> SellerProducts { get; set; }
+
+        /// <summary> Список товаров, приобретаемых данной компанией </summary>
+        public List<Product> BuyerProducts { get; set; }
     }
 }

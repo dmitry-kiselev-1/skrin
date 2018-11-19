@@ -9,7 +9,10 @@ namespace ElasticSearch.Domain
     public interface IElasticDocument
     {
         /// <summary> Уникальный идентификатор документа в индексе </summary>
-        int Id { get; set; }
+        string Id { get; set; }
+
+        /// <summary> Дата последнего обновления документа в индексе </summary>
+        DateTime? UpdateDate { get; set; }
 
         /// <summary> Уникальное наименование индекса Elastic (аналог базы данных) </summary>
         [JsonIgnore]

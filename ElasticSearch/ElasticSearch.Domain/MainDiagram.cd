@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ElasticSearch.Domain.SourceReader">
+    <Position X="3.5" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SourceReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElasticSearch.Domain.ElasticWriter">
+    <Position X="0.5" Y="2.75" Width="2.25" />
+    <Members>
+      <Method Name="ElasticWriter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAQAAMAAAAAAAAIAA=</HashCode>
+      <FileName>ElasticWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElasticSearch.Domain.CompanyDocument.CompanyDocumentWriter">
+    <Position X="0.5" Y="5.25" Width="2.25" />
+    <Members>
+      <Method Name="CompanyDocumentWriter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAIAA=</HashCode>
+      <FileName>CompanyDocument\CompanyDocumentWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ElasticSearch.Domain.CompanyDocument.CompanyDocumentReader">
+    <Position X="2.5" Y="7.25" Width="3.5" />
+    <Members>
+      <Method Name="BufferCompany" Hidden="true" />
+      <Method Name="BufferPrepare" Hidden="true" />
+      <Method Name="CompanyDocumentReader" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="ElasticSearch.Domain.SourceReader" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="3.853" />
+        <Point X="4.75" Y="7.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAACAAABEAAAAAIAAA=</HashCode>
+      <FileName>CompanyDocument\CompanyDocumentReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ElasticSearch.Domain.IElasticDocument">
+    <Position X="2.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQAAQAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>IElasticDocument.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,43 +12,93 @@ using Newtonsoft.Json.Linq;
 
 namespace ElasticSearch.Domain.CompanyDocument
 {
-    public class CompanyDocumentWriter: ElasticWriter
+    public class CompanyDocumentWriter : ElasticWriter
     {
-        public CompanyDocumentWriter(Uri elasticEndPoint): base(elasticEndPoint) {}
+        /// <summary> Конструктор </summary>
+        /// <param name="elasticConnectionString">Адрес и порт сервера Elastic</param>
+        public CompanyDocumentWriter(string elasticConnectionString)
+            : base(elasticConnectionString)
+        {}
 
-        public override void BulkCreate(List<IElasticDocument> documentList)
+        /// <summary> 
+        /// Создание новых и обновление существующих документов (если индекса нет, он будет создан).
+        /// </summary>
+        /// <param name="documentList"> Список документов </param>
+        public override async Task BulkCreateOrUpdate(List<IElasticDocument> documentList)
         {
-            var connectionSettings = new ConnectionSettings(this.ElasticEndPoint);
-            var client = new ElasticClient(connectionSettings);
-
-            if (!documentList.Any()) return;
-
-            var document = documentList.First();
-
-            //this.IndexRemove(document.IndexName);
-
-            if (!client.IndexExists(Indices.Index(document.IndexName)).Exists)
+            try
             {
-                this.IndexCreate(document);    
+                using (var connectionSettings = new ConnectionSettings(this.ElasticEndPoint))
+                {
+                    var client = new ElasticClient(connectionSettings);
+
+                    if (!documentList.Any()) return;
+
+                    var document = documentList.First();
+
+                    var bulkResponse = await client.BulkAsync(descriptor =>
+                        new BulkDescriptor()
+                            .IndexMany(documentList)
+                            .Index(document.IndexName)
+                            .Type(document.TypeName)
+                        );
+
+                    if (!bulkResponse.IsValid)
+                    {
+                        throw new Exception(bulkResponse.DebugInformation);
+                    }
+                }
+
+                // bulkResponse.IsValid (false при неверном ответе)
+                // bulkResponse.DebugInformation (подробное описание ошибки)
+                // bulkResponse.Errors
+                // bulkResponse.ItemsWithErrors
             }
-
-            var bulkResponse = client.Bulk(descriptor =>
-                new BulkDescriptor()
-                    .CreateMany(documentList)
-                        .Index(document.IndexName)
-                        .Type(document.TypeName)
-                );
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString(), e);
+            }
         }
 
-        public override void BulkRemove(List<IElasticDocument> documentList)
+        /// <summary> 
+        /// Удаление документов (если индекса нет, он будет создан).
+        /// </summary>
+        /// <param name="documentList"> Список документов </param>
+        public override async Task BulkDelete(List<IElasticDocument> documentList)
         {
-            var connectionSettings = new ConnectionSettings(this.ElasticEndPoint);
-            var client = new ElasticClient(connectionSettings);
+            try
+            {
+                using (var connectionSettings = new ConnectionSettings(this.ElasticEndPoint))
+                {
+                    var client = new ElasticClient(connectionSettings);
 
-            var bulkResponse = client.Bulk(descriptor =>
-                new BulkDescriptor()
-                    //.DeleteMany<CompanyDocument>(new[] { "1", "2" })
-                );
+                    if (!documentList.Any()) return;
+
+                    var document = documentList.First();
+
+                    var bulkResponse = await client.BulkAsync(descriptor =>
+                        new BulkDescriptor()
+                            .DeleteMany(documentList)
+                            .Index(document.IndexName)
+                            .Type(document.TypeName)
+                        );
+
+                    if (!bulkResponse.IsValid)
+                    {
+                        throw new Exception(bulkResponse.DebugInformation);
+                    }
+                }
+
+                // bulkResponse.IsValid (false при неверном ответе)
+                // bulkResponse.DebugInformation (подробное описание ошибки)
+                // bulkResponse.Errors
+                // bulkResponse.ItemsWithErrors
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.ToString(), e);
+            }
         }
+
     }
 }
